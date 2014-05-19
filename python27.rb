@@ -1,6 +1,6 @@
 require 'formula'
 
-class Python < Formula
+class Python27 < Formula
   homepage 'http://www.python.org'
   head 'http://hg.python.org/cpython', :using => :hg, :branch => '2.7'
   url 'http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz'
