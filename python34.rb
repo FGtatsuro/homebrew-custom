@@ -1,6 +1,6 @@
 require 'formula'
 
-class Python3 < Formula
+class Python34 < Formula
   homepage 'https://www.python.org/'
   url 'https://python.org/ftp/python/3.4.1/Python-3.4.1.tgz'
   sha1 'e8c1bd575a6ccc2a75f79d9d094a6a29d3802f5d'
