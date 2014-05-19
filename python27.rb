@@ -116,7 +116,7 @@ class Python27 < Formula
     # Tell Python not to install into /Applications (default for framework builds)
     system "make", "altinstall", "PYTHONAPPSDIR=#{prefix}"
     # Demos and Tools
-    system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{share}/python"
+    system "make", "frameworkaltinstallextras", "PYTHONAPPSDIR=#{share}/python"
     system "make", "quicktest" if build.include? 'quicktest'
 
     # Fixes setting Python build flags for certain software

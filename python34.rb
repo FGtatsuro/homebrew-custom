@@ -101,7 +101,7 @@ class Python34 < Formula
     # Tell Python not to install into /Applications (default for framework builds)
     system "make", "altinstall", "PYTHONAPPSDIR=#{prefix}"
     # Demos and Tools
-    system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{share}/python3"
+    system "make", "frameworkaltinstallextras", "PYTHONAPPSDIR=#{share}/python3"
     system "make", "quicktest" if build.include? "quicktest"
 
     # Any .app get a " 3" attached, so it does not conflict with python 2.x.
