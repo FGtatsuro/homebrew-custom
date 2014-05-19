@@ -115,9 +115,6 @@ class Python34 < Formula
     ["Headers", "Python", "Resources"].each{ |f| rm(prefix/"Frameworks/Python.framework/#{f}") }
     rm prefix/"Frameworks/Python.framework/Versions/Current"
 
-    # Remove 2to3 because python2 also installs it
-    rm_f bin/"2to3"
-
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
   end
