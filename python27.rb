@@ -7,12 +7,6 @@ class Python27 < Formula
   sha1 '8328d9f1d55574a287df384f4931a3942f03da64'
   revision 1
 
-  bottle do
-    sha1 "bcf43a9f8f5f587a86bdc680dd735a853fa3a8a5" => :mavericks
-    sha1 "781310a1d8d0d6283c2c6c1a88674aad3ada6064" => :mountain_lion
-    sha1 "3a79b8d747f66fb000197cd9b9e0a4596f814d7e" => :lion
-  end
-
   option :universal
   option 'quicktest', "Run `make quicktest` after the build (for devs; may fail)"
   option 'with-brewed-tk', "Use Homebrew's Tk (has optional Cocoa and threads support)"
