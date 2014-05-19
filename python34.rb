@@ -116,7 +116,7 @@ class Python34 < Formula
     rm prefix/"Frameworks/Python.framework/Versions/Current"
 
     # Remove 2to3 because python2 also installs it
-    rm bin/"2to3"
+    rm_f bin/"2to3"
 
     # Remove the site-packages that Python created in its Cellar.
     site_packages_cellar.rmtree
