@@ -160,11 +160,14 @@ class Python27 < Formula
                    "--install-scripts=#{bin}", "--install-lib=#{site_packages}" ]
 
     (libexec/'setuptools').cd { system "#{bin}/python2.7", *setup_args }
+    rm_f [bin/'easy_install']
+
     (libexec/'pip').cd { system "#{bin}/python2.7", *setup_args }
+    rm_f [bin/'pip', bin/'pip2']
 
     # When building from source, these symlinks will not exist, since
     # post_install happens after linking.
-    %w[pip pip2 pip2.7 easy_install easy_install-2.7].each do |e|
+    %w[pip2.7 easy_install-2.7].each do |e|
       (HOMEBREW_PREFIX/"bin").install_symlink bin/e
     end
 
