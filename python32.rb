@@ -24,6 +24,16 @@ class Python32 < Formula
   skip_clean "bin/pip3", "bin/pip-#{VER}"
   skip_clean "bin/easy_install3", "bin/easy_install-#{VER}"
 
+  resource 'setuptools' do
+    url 'https://pypi.python.org/packages/source/s/setuptools/setuptools-3.6.tar.gz'
+    sha1 '745cbb942f8015dbcbfd9df5cb815adb63c7b0e9'
+  end
+
+  resource 'pip' do
+    url 'https://pypi.python.org/packages/source/p/pip/pip-1.5.5.tar.gz'
+    sha1 'ce15871b65e412589044ee8a4029fe65bc26b894'
+  end
+
   patch :DATA if build.with? 'brewed-tk'
 
   def site_packages_cellar
@@ -140,8 +150,14 @@ class Python32 < Formula
     rm_rf Dir["#{site_packages}/setuptools*"]
     rm_rf Dir["#{site_packages}/distribute*"]
 
-    # Install the bundled pip if it's newer than the installed version
-    system bin/"python3", "-m", "ensurepip", "--upgrade"
+    setup_args = [ "-s", "setup.py", "install", "--force", "--verbose",
+                   "--install-scripts=#{bin}", "--install-lib=#{site_packages}" ]
+
+    resource('setuptools').stage { system "#{bin}/python3", *setup_args }
+    mv bin/'easy_install', bin/'easy_install3'
+
+    resource('pip').stage { system "#{bin}/python3", *setup_args }
+    mv bin/'pip', bin/'pip3'
 
     # And now we write the distutils.cfg
     cfg = prefix/"Frameworks/Python.framework/Versions/#{VER}/lib/python#{VER}/distutils/distutils.cfg"
@@ -255,7 +271,8 @@ class Python32 < Formula
 
   def caveats
     text = <<-EOS.undent
-      Pip has been installed. To update it
+      Setuptools and Pip have been installed. To update them
+        pip3 install --upgrade setuptools
         pip3 install --upgrade pip
 
       You can install Python packages with
