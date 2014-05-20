@@ -111,7 +111,7 @@ class Python33 < Formula
     # Tell Python not to install into /Applications (default for framework builds)
     system "make", "altinstall", "PYTHONAPPSDIR=#{prefix}"
     # Demos and Tools
-    system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{share}/python3"
+    system "make", "frameworkinstallextras", "PYTHONAPPSDIR=#{share}/python#{VER}"
     system "make", "quicktest" if build.include? "quicktest"
 
     # Any .app get a " 3" attached, so it does not conflict with python 2.x.
@@ -154,11 +154,11 @@ class Python33 < Formula
     setup_args = [ "-s", "setup.py", "install", "--force", "--verbose",
                    "--install-scripts=#{bin}", "--install-lib=#{site_packages}" ]
 
-    resource('setuptools').stage { system "#{bin}/python3", *setup_args }
-    mv bin/'easy_install', bin/'easy_install3'
+    resource('setuptools').stage { system "#{bin}/python#{VER}", *setup_args }
+    rm_f [bin/'easy_install', bin/'easy_install3']
 
-    resource('pip').stage { system "#{bin}/python3", *setup_args }
-    mv bin/'pip', bin/'pip3'
+    resource('pip').stage { system "#{bin}/python#{VER}", *setup_args }
+    rm_f [bin/'pip', bin/'pip3']
 
     # And now we write the distutils.cfg
     cfg = prefix/"Frameworks/Python.framework/Versions/#{VER}/lib/python#{VER}/distutils/distutils.cfg"

@@ -142,7 +142,7 @@ class Python34 < Formula
     rm_rf Dir["#{site_packages}/distribute*"]
 
     # Install the bundled pip if it's newer than the installed version
-    system bin/"python3", "-m", "ensurepip", "--upgrade"
+    system bin/"python#{VER}", "-m", "ensurepip", "--upgrade"
 
     # And now we write the distutils.cfg
     cfg = prefix/"Frameworks/Python.framework/Versions/#{VER}/lib/python#{VER}/distutils/distutils.cfg"
