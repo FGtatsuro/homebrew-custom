@@ -155,7 +155,7 @@ class Python33 < Formula
                    "--install-scripts=#{bin}", "--install-lib=#{site_packages}" ]
 
     resource('setuptools').stage { system "#{bin}/python#{VER}", *setup_args }
-    rm_f [bin/'easy_install', bin/'easy_install3']
+    rm_f [bin/'easy_install']
 
     resource('pip').stage { system "#{bin}/python#{VER}", *setup_args }
     rm_f [bin/'pip', bin/'pip3']
