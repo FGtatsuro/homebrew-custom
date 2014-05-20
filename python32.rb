@@ -159,6 +159,10 @@ class Python32 < Formula
     resource('pip').stage { system "#{bin}/python#{VER}", *setup_args }
     rm_f [bin/'pip', bin/'pip3']
 
+    %W[pip#{VER} easy_install-#{VER}].each do |e|
+      (HOMEBREW_PREFIX/"bin").install_symlink bin/e
+    end
+
     # And now we write the distutils.cfg
     cfg = prefix/"Frameworks/Python.framework/Versions/#{VER}/lib/python#{VER}/distutils/distutils.cfg"
     cfg.atomic_write <<-EOF.undent
