@@ -39,4 +39,10 @@ cask 'intellij-idea-ce1504' do
                 '~/Library/Caches/IdeaIC15',
                 '~/Library/Logs/IdeaIC15',
               ]
+
+  def caveats; <<-EOS.undent
+    This formula may conflict to 'intellij-idea-ce' in caskroom/versions.
+    EOS
+  end
+
 end
