@@ -40,7 +40,7 @@ cask 'intellij-idea-ce1504' do
                 '~/Library/Logs/IdeaIC15',
               ]
   caveats <<-EOS.undent
-    This formula may conflict/overwrite to 'intellij-idea-ce' in caskroom/versions.
+    This formula may conflict to/overwrite 'intellij-idea-ce' in caskroom/versions.
   EOS
 
 end
