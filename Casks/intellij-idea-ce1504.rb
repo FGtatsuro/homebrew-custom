@@ -41,7 +41,7 @@ cask 'intellij-idea-ce1504' do
               ]
 
   def caveats; <<-EOS.undent
-    This formula may conflict to 'intellij-idea-ce' in caskroom/versions.
+    This formula may conflict/overwrite to 'intellij-idea-ce' in caskroom/versions.
     EOS
   end
 
